@@ -27,14 +27,14 @@ LogsDirectory=cpu-manager
 LogsDirectoryMode=0755
 
 # Security
-NoNewPrivileges=true
-PrivateTmp=true
-ProtectSystem=strict
-ProtectHome=true
-ProtectKernelTunables=true
-ProtectControlGroups=true
-ReadWritePaths=/sys/fs/cgroup /var/log /var/run
-ReadOnlyPaths=/proc /sys
+#NoNewPrivileges=true
+#PrivateTmp=true
+#ProtectSystem=strict
+#ProtectHome=true
+#ProtectKernelTunables=true
+#ProtectControlGroups=true
+#ReadWritePaths=/sys/fs/cgroup /var/log /var/run
+#ReadOnlyPaths=/proc /sys
 
 # Command
 ExecStart=/usr/local/sbin/cpu-manager
