@@ -37,7 +37,7 @@ ReadWritePaths=/sys/fs/cgroup /var/log /var/run
 ReadOnlyPaths=/proc /sys
 
 # Command
-ExecStart=/usr/local/sbin/cpu-manager.sh
+ExecStart=/usr/local/sbin/cpu-manager
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM
 TimeoutStopSec=30
