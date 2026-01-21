@@ -1,0 +1,50 @@
+[Unit]
+Description=Dynamic CPU Manager with cgroups v2
+Documentation=https://github.com/fdefilippo/cpu-manager
+After=sysinit.target local-fs.target
+Requires=sysinit.target
+Before=multi-user.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=5
+
+# Environment
+EnvironmentFile=-/etc/default/cpu-manager
+EnvironmentFile=-/etc/cpu-manager.conf
+
+# Runtime directories
+RuntimeDirectory=cpu-manager
+RuntimeDirectoryMode=0755
+StateDirectory=cpu-manager
+StateDirectoryMode=0755
+LogsDirectory=cpu-manager
+LogsDirectoryMode=0755
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+ReadWritePaths=/sys/fs/cgroup /var/log /var/run
+ReadOnlyPaths=/proc /sys
+
+# Command
+ExecStart=/usr/local/sbin/cpu-manager.sh
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Resource limits
+LimitNOFILE=8192
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
